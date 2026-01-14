@@ -56,11 +56,11 @@ module RubyLsp
 
       private def rubyfmt_executable
         # Fall back to PATH if nothing is provided
-        settings.fetch("rubyfmtPath", "rubyfmt")
+        settings.fetch(:rubyfmtPath, "rubyfmt")
       end
 
       private def additional_args
-        args_string = settings.fetch("rubyfmtArgs", "")
+        args_string = settings.fetch(:rubyfmtArgs, "")
         return [] if args_string.empty?
 
         args_string.split
@@ -68,6 +68,7 @@ module RubyLsp
 
       private def settings
         addon_settings = @global_state.settings_for_addon("rubyfmt")
+        addon_settings&.transform_keys!(&:to_sym)
         addon_settings || {}
       end
     end
