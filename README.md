@@ -1,4 +1,4 @@
-# Ruby LSP Rubyfmt Formatter
+# `ruby-lsp-rubyfmt-formatter`
 
 A [Ruby LSP](https://github.com/Shopify/ruby-lsp) add-on that provides formatting support using [rubyfmt](https://github.com/fables-tales/rubyfmt).
 
@@ -16,12 +16,6 @@ Or install it directly:
 gem install ruby-lsp-rubyfmt-formatter
 ```
 
-You'll also need `rubyfmt` installed and available on your PATH:
-
-```bash
-brew install rubyfmt
-```
-
 ## Usage
 
 Once installed, configure your VSCode settings to use rubyfmt as the formatter:
@@ -35,6 +29,10 @@ Once installed, configure your VSCode settings to use rubyfmt as the formatter:
   "rubyLsp.formatter": "rubyfmt"
 }
 ```
+
+By default, the extension uses the `rubyfmt` in your PATH, or see the configuration options below for passing a specific path.
+
+For instructions on installing `rubyfmt` itself, see [the docs](https://github.com/fables-tales/rubyfmt?tab=readme-ov-file#how-do-i-use-it).
 
 ### Configuration Options
 
@@ -54,10 +52,10 @@ You can customize the rubyfmt behavior via `rubyLsp.addonSettings` in your VSCod
 
 #### Available Options
 
-| Option        | Type            | Default     | Description                                                                                      |
-| ------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------ |
-| `rubyfmtPath` | String          | `"rubyfmt"` | Path to the rubyfmt executable. Uses PATH by default.                                            |
-| `rubyfmtArgs` | String \| Array | `""`        | Additional arguments to pass to rubyfmt. Can be a space-separated string or an array of strings. |
+| Option        | Type   | Default     | Description                                           |
+| ------------- | ------ | ----------- | ----------------------------------------------------- |
+| `rubyfmtPath` | String | `"rubyfmt"` | Path to the rubyfmt executable. Uses PATH by default. |
+| `rubyfmtArgs` | String | `""`        | Additional arguments to pass to rubyfmt.              |
 
 ## Contributing
 
