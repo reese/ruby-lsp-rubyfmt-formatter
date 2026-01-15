@@ -26,7 +26,7 @@ module RubyLsp
         @global_state = global_state
       end
 
-      def run_formatting(uri, document)
+      def run_formatting(_uri, document)
         source = document.source
         command = build_command
 

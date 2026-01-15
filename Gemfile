@@ -2,10 +2,13 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in ruby-lsp-rubyfmt-formatter.gemspec
 gemspec
 
 group :development, :test do
-  gem "rake"
   gem "minitest"
+  gem "rake"
+  gem "rubocop"
+  gem "rubocop-minitest"
+  gem "rubocop-rake"
+  gem "rubocop-rubyfmt"
 end

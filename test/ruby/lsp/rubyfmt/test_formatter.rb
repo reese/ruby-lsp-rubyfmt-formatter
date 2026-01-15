@@ -62,9 +62,7 @@ module RubyLsp
         assert_equal(["/usr/local/bin/rubyfmt", "--check"], command)
       end
 
-      private
-
-      def create_global_state(addon_settings = {})
+      private def create_global_state(addon_settings = {})
         global_state = RubyLsp::GlobalState.new
         global_state.apply_options(
           {
