@@ -2,6 +2,7 @@
 
 require "ruby_lsp/internal"
 require "open3"
+require "uri"
 
 module RubyLsp
   module RubyfmtFormatter
@@ -26,9 +27,9 @@ module RubyLsp
         @global_state = global_state
       end
 
-      def run_formatting(_uri, document)
+      def run_formatting(uri, document)
         source = document.source
-        command = build_command
+        command = build_command(uri)
 
         stdout, stderr, status = Open3.capture3(*command, stdin_data: source)
 
@@ -47,9 +48,14 @@ module RubyLsp
         # rubyfmt doesn't emit diagnostics
       end
 
-      private def build_command
+      private def build_command(uri)
         path = rubyfmt_executable
         args = additional_args
+
+        if uri && supports_stdin_filepath?
+          file_path = URI(uri.to_s).path
+          args += ["--stdin-filepath", file_path] if file_path
+        end
 
         [path] + args
       end
@@ -64,6 +70,23 @@ module RubyLsp
         return [] if args_string.empty?
 
         args_string.split
+      end
+
+      private def supports_stdin_filepath?
+        Gem::Version.new(rubyfmt_version) >= Gem::Version.new("0.13.0")
+      rescue ArgumentError
+        false
+      end
+
+      private def rubyfmt_version
+        @rubyfmt_version ||= begin
+          stdout, _stderr, status = Open3.capture3(rubyfmt_executable, "--version")
+          if status.success? && (match = stdout.match(/(\d+\.\d+\.\d+)/))
+            match[1]
+          else
+            "0.0.0"
+          end
+        end
       end
 
       private def settings

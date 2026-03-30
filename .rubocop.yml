@@ -14,3 +14,8 @@ Style/IfUnlessModifier:
 
 Style/Documentation:
   Enabled: false
+
+# There's only really 1-2 classes that will ever be in this project,
+# the length on them is irrelevant.
+Metrics/ClassLength:
+  Enabled: false

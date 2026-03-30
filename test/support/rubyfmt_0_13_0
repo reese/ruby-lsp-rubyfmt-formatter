@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$1" = "--version" ]; then
+  echo "rubyfmt 0.13.0"
+  exit 0
+fi
+cat

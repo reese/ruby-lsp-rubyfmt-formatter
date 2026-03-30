@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$1" = "--version" ]; then
+  echo "error: version check failed" >&2
+  exit 1
+fi
+cat
