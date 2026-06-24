@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-latest
     name: Lint
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Check formatting with rubyfmt
         run: |
           brew install rubyfmt
@@ -29,7 +29,7 @@ jobs:
           - "3.3"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
